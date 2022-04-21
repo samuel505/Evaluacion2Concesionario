@@ -15,27 +15,27 @@ import java.util.regex.Pattern;
  *
  * @author alumno
  */
-public class Vehiculo implements Comparable<Vehiculo>{
+public final class Vehiculo implements Comparable<Vehiculo>{
 
     private final String marca;
     private final String modelo;
     private final String bastidor;
     private final TipoVehiculo tipoVehiculo;
     private final double precioCompra;
-    private int margenDeVeneficio;
-    private final double precioVenta;
+    private int margenDeBeneficio;
+    private double precioVenta;
     private final LocalDate fechaCompra;
     private LocalDate fechaVenta;
     public final static Pattern PATRON_BASTIDOR = Pattern.compile("[A-Z]{6}[0-9][A-Z]{4}[0-9]{6}");
     public final static Pattern PATRON_MARCAMODELO = Pattern.compile("[a-zA-Z0-9 ]+");
     
-    public Vehiculo(String marca, String modelo, String bastidor, TipoVehiculo tipoVehiculo, double precioCompra, int margenDeVeneficio, LocalDate fechaCompra) {
+    public Vehiculo(String marca, String modelo, String bastidor, TipoVehiculo tipoVehiculo, double precioCompra, int margenDeBeneficio, LocalDate fechaCompra) {
         checkMarca(marca);
         checkmodelo(modelo);
         checkBastidor(bastidor);
         checkTipoVehiculo(tipoVehiculo);
         checkPrecioCompra(precioCompra);
-        checkMargenVeneficio(margenDeVeneficio);                
+        checkMargenBeneficio(margenDeBeneficio);                
         checkFechaCompra(fechaCompra);        
              
         
@@ -44,8 +44,8 @@ public class Vehiculo implements Comparable<Vehiculo>{
         this.bastidor = bastidor;
         this.tipoVehiculo = tipoVehiculo;
         this.precioCompra = precioCompra;
-        this.margenDeVeneficio = margenDeVeneficio;
-        this.precioVenta = getPrecioventa(precioCompra,margenDeVeneficio);
+        this.margenDeBeneficio = margenDeBeneficio;
+        this.precioVenta = getPrecioventa(precioCompra,margenDeBeneficio);
         this.fechaCompra = fechaCompra;
         this.fechaVenta = null;
     }
@@ -90,7 +90,7 @@ public class Vehiculo implements Comparable<Vehiculo>{
         }
     }
 
-    private static void checkMargenVeneficio(int margen) {
+    private static void checkMargenBeneficio(int margen) {
         if (margen < 1) {
             throw new IllegalArgumentException();
         }
@@ -120,7 +120,10 @@ public class Vehiculo implements Comparable<Vehiculo>{
     }
 
      public double getPrecioventa(double precioCompra,int margen){
-      return precioCompra+((precioCompra*margen)/100);
+         
+         double precioCompraF = precioCompra+((precioCompra*margen)/100);
+      return precioCompraF;
+      
          
     }
     
@@ -160,16 +163,16 @@ public class Vehiculo implements Comparable<Vehiculo>{
         return true;
     }
 
-    public void setMargenDeVeneficio(int margenDeVeneficio) {
-        checkMargenVeneficio(margenDeVeneficio);
-        this.margenDeVeneficio = margenDeVeneficio;
+    public void setMargenDeVeneficio(int margenBeneficio) {
+        checkMargenBeneficio(margenBeneficio);
+        this.margenDeBeneficio = margenBeneficio;
     }
 
     
     
     @Override
     public String toString() {
-        return "Marca:"+" "+this.marca+"\n"+"Modelo:"+" "+this.modelo+"\n"+"Bastidor"+" "+this.bastidor+"\n"+"Precio Compra:"+" "+this.precioCompra+"\n"+"Margen"+" "+this.margenDeVeneficio+"%"+"\n"+"PVP"+" "+this.precioVenta+"\n"+"Fecha compra"+" "+this.fechaCompra+"\n"+"Fecha venta"+" "+this.fechaVenta+"\n";
+        return "Marca:"+" "+this.marca+"\n"+"Modelo:"+" "+this.modelo+"\n"+"Bastidor"+" "+this.bastidor+"\n"+"Precio Compra:"+" "+this.precioCompra+"\n"+"Margen"+" "+this.margenDeBeneficio+"%"+"\n"+"PVP"+" "+this.precioVenta+"\n"+"Fecha compra"+" "+this.fechaCompra+"\n"+"Fecha venta"+" "+this.fechaVenta+"\n";
     }
 
     public String getModelo() {
@@ -181,10 +184,11 @@ public class Vehiculo implements Comparable<Vehiculo>{
     }
 
     public int getMargenDeVeneficio() {
-        return margenDeVeneficio;
+        return margenDeBeneficio;
     }
 
     public double getPrecioVenta() {
+        System.out.println(precioVenta);
         return precioVenta;
     }
 

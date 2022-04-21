@@ -71,6 +71,7 @@ public class Evaluacion2Concesionario {
                         if (marcaVehiculo == null || marcaVehiculo.isBlank() || !Vehiculo.PATRON_MARCAMODELO.matcher(marcaVehiculo).matches()) {
                             System.out.println("Inserte una marca de vehiculo valida");
                         }
+                        
                     } while (marcaVehiculo == null || marcaVehiculo.isBlank() || !Vehiculo.PATRON_MARCAMODELO.matcher(marcaVehiculo).matches());
 
                     //modelo del vehiculo
@@ -81,7 +82,7 @@ public class Evaluacion2Concesionario {
                         if (modeloVehiculo == null || modeloVehiculo.isBlank() || !Vehiculo.PATRON_MARCAMODELO.matcher(modeloVehiculo).matches()) {
                             System.out.println("Inserte un modelo de vehiculo valido");
                         }
-
+                        
                     } while (modeloVehiculo == null || modeloVehiculo.isBlank() || !Vehiculo.PATRON_MARCAMODELO.matcher(modeloVehiculo).matches());
 
                     //numero del bastidor
@@ -92,18 +93,22 @@ public class Evaluacion2Concesionario {
                         if (numBastidor == null || numBastidor.isBlank() || !Vehiculo.PATRON_BASTIDOR.matcher(numBastidor).matches()) {
                             System.out.println("Inserte un numero de bastidor valido");
                         }
-
+                        
                     } while (numBastidor == null || numBastidor.isBlank() || !Vehiculo.PATRON_BASTIDOR.matcher(numBastidor).matches());
 
                     //seleccion tipo de vehiculo
                     int numeroTipoVehiculo = -1;
                     do {
-                        for (int i = 0; i < TipoVehiculo.values().length; i++) {
-                            System.out.println((i + 1) + " " + TipoVehiculo.of(i));
-                        }
                         System.out.println("Inserte un numero para elegir el tipo de vehiculo");
+                        for (int i = 1; i <= TipoVehiculo.values().length; i++) {
+                            System.out.println((i) + " " + TipoVehiculo.of(i));
+                        }
+                        
                         if (sc.hasNextInt()) {
                             numeroTipoVehiculo = sc.nextInt();
+                            if(numeroTipoVehiculo>TipoVehiculo.values().length){
+                                System.out.println("Inserte un numero valido");
+                            }
                         }
 
                         sc.nextLine();
@@ -125,7 +130,7 @@ public class Evaluacion2Concesionario {
                     //margen de beneficio
                     int margenBeneficio = -1;
                     do {
-                        System.out.println("Inserte un precio de compra del vehiculo");
+                        System.out.println("Inserte el margen de beneficio");
                         if (sc.hasNextInt()) {
                             margenBeneficio = sc.nextInt();
                         }
@@ -139,6 +144,7 @@ public class Evaluacion2Concesionario {
                 case "2":
                     //Mostramos vehículos no vendidos. El usuario inserta la matrícula y se marca como vendido el vehículo a fecha de hoy (Esta función te puede ayudar: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/LocalDate.html#now())
                         
+                    
                     break;
                 case "3":
                     //Muestra cuantos coches están pendientes de vender y el importe total de venta de estos (teniendo en cuenta que el PVP sigue la fórmula del documento)
@@ -146,7 +152,7 @@ public class Evaluacion2Concesionario {
                     break;
                 case "4":
                     //Muestra cuantos coches están vendidos y el importe total de venta de estos (teniendo en cuenta que el PVP sigue la fórmula del documento)
-                    System.out.println("Hay " + con1.getVendidos() + " coches vendidos");
+                    System.out.println("Hay " + con1.getVendidos() + " coches vendidos" + "con un PVP total de: ");
                     break;
                 case "5":
                     //Muestra los datos de los coches no vendidos haciendo un System.out.println(vehiculo). Se muestran todos los datos del coche.

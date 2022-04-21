@@ -123,8 +123,11 @@ public class Concesionario implements Comparable<Concesionario> {
     public double getPVPTotalNoVendidos() {
         double pvp = 0;
         for (Vehiculo coches : vendido) {
+           
             pvp += coches.getPrecioVenta();
+            
         }
+        
         return pvp;
     }
 
