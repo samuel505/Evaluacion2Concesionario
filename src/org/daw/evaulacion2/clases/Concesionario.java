@@ -5,6 +5,7 @@
  */
 package org.daw.evaulacion2.clases;
 
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 import static java.util.Objects.hash;
@@ -17,9 +18,10 @@ import java.util.regex.Pattern;
  *
  * @author alumno
  */
-public class Concesionario implements Comparable<Concesionario>{
+public class Concesionario implements Comparable<Concesionario> {
 
-    private Map<String, Set<Coche>> coche = new TreeMap<>();
+    private Map<String, Set<Vehiculo>> coche = new TreeMap<>();
+    private Set<Vehiculo> vendido = new TreeSet<>();
 
     public final static Pattern PATRON_CIF = Pattern.compile("[A-Z][0-9]{8}");
     public final static Pattern PATRON_NOMBRE = Pattern.compile("[a-zA-Z0-9\\.]+");
@@ -29,7 +31,7 @@ public class Concesionario implements Comparable<Concesionario>{
     public Concesionario(String cif, String nombre) {
         checkNombre(nombre);
         checkCif(cif);
-        
+
         this.cif = cif;
         this.nombre = nombre;
     }
@@ -49,30 +51,37 @@ public class Concesionario implements Comparable<Concesionario>{
         }
 
     }
-    
+
     int comprados = 0;
-    public int addVehiculo(Coche c){
-        
+
+    public int addVehiculo(Vehiculo c) {
+
         if (!coche.containsKey(c.getBastidor())) {
-            coche.put(c.getBastidor(), new TreeSet<Coche>());
+            coche.put(c.getBastidor(), new TreeSet<Vehiculo>());
         }
         coche.get(c.getBastidor()).add(c);
-        
+
         comprados++;
-        
+
         return comprados;
     }
-    
-    private int venta = 0;
-    public int getVentas(int venta){
-        venta = this.venta+1;
-       
-        return venta;
+
+    public boolean registrarVenta(String bastidor) {
+        if (coche.containsKey(bastidor)) {
+            Iterator<Vehiculo> it = coche.get(bastidor).iterator();
+            Vehiculo cocheVendido = it.next();
+            vendido.add(cocheVendido);
+            cocheVendido.setFechaVenta();
+            coche.remove(bastidor);
+            return true;
+        }
+        return false;
+
     }
 
     @Override
     public String toString() {
-        return "Concensionario{" + "cif=" + cif + ", nombre=" + nombre + ", venta=" + venta + '}';
+        return "Concensionario{" + "cif=" + cif + ", nombre=" + nombre + ", venta=" + vendido.size() + '}';
     }
 
     @Override
@@ -98,6 +107,27 @@ public class Concesionario implements Comparable<Concesionario>{
         return true;
     }
 
+    public int getVendidos() {
+        int vendidos = vendido.size();
+        
+        return vendidos;
+    }
+
+    public int getSinvender() {
+        int sinVender = coche.values().size();
+      return  sinVender;
+        
+    }
+    
+    
+    public double getPVPTotalNoVendidos() {
+        double pvp = 0;
+        for (Vehiculo coches : vendido) {
+            pvp += coches.getPrecioVenta();
+        }
+        return pvp;
+    }
+
     public String getCif() {
         return cif;
     }
@@ -106,30 +136,11 @@ public class Concesionario implements Comparable<Concesionario>{
         return nombre;
     }
 
-    public int getComprados() {
-        return comprados;
-    }
-
-    public int getVenta() {
-        return venta;
-    }
+   
 
     @Override
     public int compareTo(Concesionario t) {
-    return this.cif.compareTo(t.cif);
+        return this.cif.compareTo(t.cif);
     }
 
-    public void setComprados(int comprados) {
-        this.comprados=comprados;
-    }
-
-    public void setVenta(int venta) {
-        this.venta = venta;
-    }
-
-    
-     
-    
-   
-    
 }

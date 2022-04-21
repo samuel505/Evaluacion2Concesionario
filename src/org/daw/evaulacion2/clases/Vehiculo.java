@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  *
  * @author alumno
  */
-public class Coche implements Comparable<Coche>{
+public class Vehiculo implements Comparable<Vehiculo>{
 
     private final String marca;
     private final String modelo;
@@ -25,11 +25,11 @@ public class Coche implements Comparable<Coche>{
     private int margenDeVeneficio;
     private final double precioVenta;
     private final LocalDate fechaCompra;
-    private final LocalDate fechaVenta;
+    private LocalDate fechaVenta;
     public final static Pattern PATRON_BASTIDOR = Pattern.compile("[A-Z]{6}[0-9][A-Z]{4}[0-9]{6}");
     public final static Pattern PATRON_MARCAMODELO = Pattern.compile("[a-zA-Z0-9 ]+");
     
-    public Coche(String marca, String modelo, String bastidor, TipoVehiculo tipoVehiculo, double precioCompra, int margenDeVeneficio, LocalDate fechaCompra) {
+    public Vehiculo(String marca, String modelo, String bastidor, TipoVehiculo tipoVehiculo, double precioCompra, int margenDeVeneficio, LocalDate fechaCompra) {
         checkMarca(marca);
         checkmodelo(modelo);
         checkBastidor(bastidor);
@@ -50,6 +50,11 @@ public class Coche implements Comparable<Coche>{
         this.fechaVenta = null;
     }
 
+    
+    protected void setFechaVenta(){
+        this.fechaVenta=LocalDate.now();
+    }
+    
     private static void checkMarca(String marca) {
         if (marca == null || !PATRON_MARCAMODELO.matcher(marca).matches()) {
             throw new IllegalArgumentException();
@@ -148,7 +153,7 @@ public class Coche implements Comparable<Coche>{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Coche other = (Coche) obj;
+        final Vehiculo other = (Vehiculo) obj;
         if (!Objects.equals(this.bastidor, other.bastidor)) {
             return false;
         }
@@ -160,6 +165,8 @@ public class Coche implements Comparable<Coche>{
         this.margenDeVeneficio = margenDeVeneficio;
     }
 
+    
+    
     @Override
     public String toString() {
         return "Marca:"+" "+this.marca+"\n"+"Modelo:"+" "+this.modelo+"\n"+"Bastidor"+" "+this.bastidor+"\n"+"Precio Compra:"+" "+this.precioCompra+"\n"+"Margen"+" "+this.margenDeVeneficio+"%"+"\n"+"PVP"+" "+this.precioVenta+"\n"+"Fecha compra"+" "+this.fechaCompra+"\n"+"Fecha venta"+" "+this.fechaVenta+"\n";
@@ -182,7 +189,7 @@ public class Coche implements Comparable<Coche>{
     }
 
     @Override
-    public int compareTo(Coche t) {
+    public int compareTo(Vehiculo t) {
        return this.bastidor.compareTo(t.bastidor);
         
     }
