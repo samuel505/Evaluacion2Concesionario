@@ -149,20 +149,16 @@ public class Evaluacion2Concesionario {
                 case "2":
                     //Mostramos vehículos no vendidos. El usuario inserta la matrícula y se marca como vendido el vehículo a fecha de hoy (Esta función te puede ayudar: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/LocalDate.html#now())
 
-                    boolean noExiste = true;
+                    
                     String nbastidor = "no hay";
-                    do {
+                    
                         System.out.println("Inserte un numero de bastidor para registrar la venta del vehiculo");
                         nbastidor = sc.nextLine();
                         if (con1.registrarVenta(nbastidor)) {
-                            System.out.println("Se ha registrado exitosamente");
-                            noExiste = false;
+                            System.out.println("Se ha registrado la venta exitosamente");
                         }else{
-                            System.out.println("No existe el vehiculo, inserte un numero de bastidor valido o escriba salir");
+                            System.out.println("No existe el vehiculo, no se pudo registrar");
                         }
-                    } while (noExiste || nbastidor.equalsIgnoreCase("salir"));
-
-                  
 
                     break;
                 case "3":

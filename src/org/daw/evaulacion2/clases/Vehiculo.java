@@ -165,6 +165,7 @@ public final class Vehiculo implements Comparable<Vehiculo>{
 
     public void setMargenDeVeneficio(int margenBeneficio) {
         checkMargenBeneficio(margenBeneficio);
+        
         this.margenDeBeneficio = margenBeneficio;
     }
 
