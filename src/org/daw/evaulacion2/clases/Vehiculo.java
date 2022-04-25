@@ -121,8 +121,8 @@ public final class Vehiculo implements Comparable<Vehiculo>{
 
      public double getPrecioventa(double precioCompra,int margen){
          
-         double precioCompraF = precioCompra+((precioCompra*margen)/100);
-      return precioCompraF;
+         double precioVenta = precioCompra+((precioCompra*margen)/100);
+      return precioVenta;
       
          
     }

@@ -109,6 +109,8 @@ public class Evaluacion2Concesionario {
                             if(numeroTipoVehiculo>TipoVehiculo.values().length){
                                 System.out.println("Inserte un numero valido");
                             }
+                        }else{
+                            System.out.println("Inserte un numero");
                         }
 
                         sc.nextLine();
@@ -128,14 +130,18 @@ public class Evaluacion2Concesionario {
                     } while (precioCompra < 1);
 
                     //margen de beneficio
-                    int margenBeneficio = -1;
+                    int margenBeneficio = 0;
+                   boolean noValido = true;
                     do {
                         System.out.println("Inserte el margen de beneficio");
                         if (sc.hasNextInt()) {
                             margenBeneficio = sc.nextInt();
+                            noValido=false;
+                        }else{
+                            System.out.println("inserte un numero");
                         }
                         sc.nextLine();
-                    } while (margenBeneficio < 1);
+                    } while (margenBeneficio < 1 && noValido);
 
                     con1.addVehiculo(new Vehiculo(marcaVehiculo, modeloVehiculo, numBastidor, TipoVehiculo.of(numeroTipoVehiculo), precioCompra, margenBeneficio, LocalDate.now()));
 
@@ -152,7 +158,7 @@ public class Evaluacion2Concesionario {
                     break;
                 case "4":
                     //Muestra cuantos coches están vendidos y el importe total de venta de estos (teniendo en cuenta que el PVP sigue la fórmula del documento)
-                    System.out.println("Hay " + con1.getVendidos() + " coches vendidos" + "con un PVP total de: ");
+                    System.out.println("Hay " + con1.getVendidos() + " coches vendidos" + "con un PVP total de: "+ con1.getPVPTotalVendidos());
                     break;
                 case "5":
                     //Muestra los datos de los coches no vendidos haciendo un System.out.println(vehiculo). Se muestran todos los datos del coche.

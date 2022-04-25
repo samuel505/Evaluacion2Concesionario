@@ -111,7 +111,6 @@ public class Concesionario implements Comparable<Concesionario> {
 
     public int getVendidos() {
         int vendidos = vendido.size();
-        
         return vendidos;
     }
 
@@ -121,17 +120,29 @@ public class Concesionario implements Comparable<Concesionario> {
         
     }
     
-    
-    public double getPVPTotalNoVendidos() {
+     public double getPVPTotalNoVendidos() {
         double pvp = 0;
-        for (Vehiculo coches : vendido) {
-           
-            pvp += coches.getPrecioVenta();
-            
+        for (Set<Vehiculo> value : coche.values()) {
+            Iterator<Vehiculo> it = value.iterator();
+            Vehiculo next = it.next();
+            pvp += next.getPrecioVenta();
         }
         
         return pvp;
     }
+    
+    public double getPVPTotalVendidos() {
+        double pvp = 0;
+        for (Vehiculo vehiculo : vendido) {
+            pvp += vehiculo.getPrecioVenta();
+        }
+        
+        return pvp;
+    }
+    
+    
+    
+   
 
     public String getCif() {
         return cif;
