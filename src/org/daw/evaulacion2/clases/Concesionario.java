@@ -81,8 +81,10 @@ public class Concesionario implements Comparable<Concesionario> {
 
     @Override
     public String toString() {
-        return "Concensionario{" + "cif=" + cif + ", nombre=" + nombre + ", venta=" + vendido.size() + '}';
+        return "Concesionario{" + "cif=" + cif + "\n" + "nombre=" + nombre + "\n" +"coche=" + coche + "\n" + "vendido=" + vendido + "\n" + "comprados=" + comprados + "\n" +'}';
     }
+
+    
 
     @Override
     public int hashCode() {
@@ -146,4 +148,6 @@ public class Concesionario implements Comparable<Concesionario> {
         return this.cif.compareTo(t.cif);
     }
 
+    
+    
 }

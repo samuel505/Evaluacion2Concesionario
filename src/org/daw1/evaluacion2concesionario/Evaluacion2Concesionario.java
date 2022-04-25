@@ -143,7 +143,7 @@ public class Evaluacion2Concesionario {
                     break;
                 case "2":
                     //Mostramos vehículos no vendidos. El usuario inserta la matrícula y se marca como vendido el vehículo a fecha de hoy (Esta función te puede ayudar: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/LocalDate.html#now())
-                        
+                        con1.registrarVenta("AAAAAA1AAAA111111");
                     
                     break;
                 case "3":
@@ -156,11 +156,11 @@ public class Evaluacion2Concesionario {
                     break;
                 case "5":
                     //Muestra los datos de los coches no vendidos haciendo un System.out.println(vehiculo). Se muestran todos los datos del coche.
-                    System.out.println();
+                    System.out.println(con1);
                     break;
                 case "6":
                     //Muestra los datos de los coches vendidos haciendo un System.out.println(vehiculo). Se muestran todos los datos del coche.
-                    System.out.println();
+                    System.out.println(con1);
                     break;
                 case "0":
                     break;

@@ -112,12 +112,12 @@ public final class Vehiculo implements Comparable<Vehiculo>{
 
     }
 
-    private static void checkFechaVenta(LocalDate fechaVenta) {
-        if (fechaVenta != null || fechaVenta.isBefore(LocalDate.now())) {
-            throw new IllegalArgumentException();
-        }
-
-    }
+//    private static void checkFechaVenta(LocalDate fechaVenta) {
+//        if (fechaVenta != null || fechaVenta.isBefore(LocalDate.now())) {
+//            throw new IllegalArgumentException();
+//        }
+//
+//    }
 
      public double getPrecioventa(double precioCompra,int margen){
          
