@@ -79,6 +79,24 @@ public class Concesionario implements Comparable<Concesionario> {
 
     }
 
+    public String mostrarVehiculosVendidos(){
+        String vehiculos="";
+        for (Vehiculo vehiculo : vendido) {
+           vehiculos+= vehiculo.toString() + "\n";
+        }
+        return vehiculos;
+    }
+    
+    
+    public String mostrarVehiculosNoVendidos(){
+        String vehiculos="";
+        for (Set<Vehiculo> value : coche.values()) {
+          vehiculos+=value.iterator().next().toString()+"\n";
+        }
+        return vehiculos;
+    }
+    
+    
     @Override
     public String toString() {
         return "Concesionario{" + "cif=" + cif + "\n" + "nombre=" + nombre + "\n" +"coche=" + coche + "\n" + "vendido=" + vendido + "\n" + "comprados=" + comprados + "\n" +'}';

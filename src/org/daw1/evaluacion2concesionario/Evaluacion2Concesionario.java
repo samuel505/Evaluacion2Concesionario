@@ -71,7 +71,7 @@ public class Evaluacion2Concesionario {
                         if (marcaVehiculo == null || marcaVehiculo.isBlank() || !Vehiculo.PATRON_MARCAMODELO.matcher(marcaVehiculo).matches()) {
                             System.out.println("Inserte una marca de vehiculo valida");
                         }
-                        
+
                     } while (marcaVehiculo == null || marcaVehiculo.isBlank() || !Vehiculo.PATRON_MARCAMODELO.matcher(marcaVehiculo).matches());
 
                     //modelo del vehiculo
@@ -82,7 +82,7 @@ public class Evaluacion2Concesionario {
                         if (modeloVehiculo == null || modeloVehiculo.isBlank() || !Vehiculo.PATRON_MARCAMODELO.matcher(modeloVehiculo).matches()) {
                             System.out.println("Inserte un modelo de vehiculo valido");
                         }
-                        
+
                     } while (modeloVehiculo == null || modeloVehiculo.isBlank() || !Vehiculo.PATRON_MARCAMODELO.matcher(modeloVehiculo).matches());
 
                     //numero del bastidor
@@ -93,7 +93,7 @@ public class Evaluacion2Concesionario {
                         if (numBastidor == null || numBastidor.isBlank() || !Vehiculo.PATRON_BASTIDOR.matcher(numBastidor).matches()) {
                             System.out.println("Inserte un numero de bastidor valido");
                         }
-                        
+
                     } while (numBastidor == null || numBastidor.isBlank() || !Vehiculo.PATRON_BASTIDOR.matcher(numBastidor).matches());
 
                     //seleccion tipo de vehiculo
@@ -103,20 +103,19 @@ public class Evaluacion2Concesionario {
                         for (int i = 1; i <= TipoVehiculo.values().length; i++) {
                             System.out.println((i) + " " + TipoVehiculo.of(i));
                         }
-                        
+
                         if (sc.hasNextInt()) {
                             numeroTipoVehiculo = sc.nextInt();
-                            if(numeroTipoVehiculo>TipoVehiculo.values().length){
+                            if (numeroTipoVehiculo > TipoVehiculo.values().length) {
                                 System.out.println("Inserte un numero valido");
                             }
-                        }else{
+                        } else {
                             System.out.println("Inserte un numero");
                         }
 
                         sc.nextLine();
                     } while (numeroTipoVehiculo < 1 || numeroTipoVehiculo > TipoVehiculo.values().length);
 
-                    
                     //Precio de compra
                     double precioCompra = -1;
                     do {
@@ -131,13 +130,13 @@ public class Evaluacion2Concesionario {
 
                     //margen de beneficio
                     int margenBeneficio = 0;
-                   boolean noValido = true;
+                    boolean noValido = true;
                     do {
                         System.out.println("Inserte el margen de beneficio");
                         if (sc.hasNextInt()) {
                             margenBeneficio = sc.nextInt();
-                            noValido=false;
-                        }else{
+                            noValido = false;
+                        } else {
                             System.out.println("inserte un numero");
                         }
                         sc.nextLine();
@@ -149,8 +148,22 @@ public class Evaluacion2Concesionario {
                     break;
                 case "2":
                     //Mostramos vehículos no vendidos. El usuario inserta la matrícula y se marca como vendido el vehículo a fecha de hoy (Esta función te puede ayudar: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/LocalDate.html#now())
-                        con1.registrarVenta("AAAAAA1AAAA111111");
-                    
+
+                    boolean noExiste = true;
+                    String nbastidor = "no hay";
+                    do {
+                        System.out.println("Inserte un numero de bastidor para registrar la venta del vehiculo");
+                        nbastidor = sc.nextLine();
+                        if (con1.registrarVenta(nbastidor)) {
+                            System.out.println("Se ha registrado exitosamente");
+                            noExiste = false;
+                        }else{
+                            System.out.println("No existe el vehiculo, inserte un numero de bastidor valido o escriba salir");
+                        }
+                    } while (noExiste || nbastidor.equalsIgnoreCase("salir"));
+
+                  
+
                     break;
                 case "3":
                     //Muestra cuantos coches están pendientes de vender y el importe total de venta de estos (teniendo en cuenta que el PVP sigue la fórmula del documento)
@@ -158,15 +171,15 @@ public class Evaluacion2Concesionario {
                     break;
                 case "4":
                     //Muestra cuantos coches están vendidos y el importe total de venta de estos (teniendo en cuenta que el PVP sigue la fórmula del documento)
-                    System.out.println("Hay " + con1.getVendidos() + " coches vendidos" + "con un PVP total de: "+ con1.getPVPTotalVendidos());
+                    System.out.println("Hay " + con1.getVendidos() + " coches vendidos" + "con un PVP total de: " + con1.getPVPTotalVendidos());
                     break;
                 case "5":
                     //Muestra los datos de los coches no vendidos haciendo un System.out.println(vehiculo). Se muestran todos los datos del coche.
-                    System.out.println(con1);
+                    System.out.println(con1.mostrarVehiculosNoVendidos());
                     break;
                 case "6":
                     //Muestra los datos de los coches vendidos haciendo un System.out.println(vehiculo). Se muestran todos los datos del coche.
-                    System.out.println(con1);
+                    System.out.println(con1.mostrarVehiculosVendidos());
                     break;
                 case "0":
                     break;
