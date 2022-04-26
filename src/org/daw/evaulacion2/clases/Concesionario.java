@@ -36,7 +36,7 @@ public class Concesionario implements Comparable<Concesionario> {
         this.nombre = nombre;
     }
 
-    public static void checkNombre(String nombre) {
+    private static void checkNombre(String nombre) {
         if (nombre == null || !PATRON_NOMBRE.matcher(nombre).matches()) {
             throw new IllegalArgumentException();
 
@@ -44,7 +44,7 @@ public class Concesionario implements Comparable<Concesionario> {
 
     }
 
-    public static void checkCif(String cif) {
+    private static void checkCif(String cif) {
         if (cif == null || !PATRON_CIF.matcher(cif).matches()) {
             throw new IllegalArgumentException();
 
@@ -52,18 +52,19 @@ public class Concesionario implements Comparable<Concesionario> {
 
     }
 
-    int comprados = 0;
+    private static int comprados = 0;
 
-    public int addVehiculo(Vehiculo c) {
+    public boolean addVehiculo(Vehiculo c) {
 
         if (!coche.containsKey(c.getBastidor())) {
             coche.put(c.getBastidor(), new TreeSet<Vehiculo>());
+
+            coche.get(c.getBastidor()).add(c);
+            comprados++;
+            return true;
         }
-        coche.get(c.getBastidor()).add(c);
+        return false;
 
-        comprados++;
-
-        return comprados;
     }
 
     public boolean registrarVenta(String bastidor) {
@@ -73,36 +74,33 @@ public class Concesionario implements Comparable<Concesionario> {
             vendido.add(cocheVendido);
             cocheVendido.setFechaVenta();
             coche.remove(bastidor);
+            comprados--;
             return true;
         }
         return false;
 
     }
 
-    public String mostrarVehiculosVendidos(){
-        String vehiculos="";
+    public String mostrarVehiculosVendidos() {
+        String vehiculos = "";
         for (Vehiculo vehiculo : vendido) {
-           vehiculos+= vehiculo.toString() + "\n";
+            vehiculos += vehiculo.toString() + "\n";
         }
         return vehiculos;
-    }
-    
-    
-    public String mostrarVehiculosNoVendidos(){
-        String vehiculos="";
-        for (Set<Vehiculo> value : coche.values()) {
-          vehiculos+=value.iterator().next().toString()+"\n";
-        }
-        return vehiculos;
-    }
-    
-    
-    @Override
-    public String toString() {
-        return "Concesionario{" + "cif=" + cif + "\n" + "nombre=" + nombre + "\n" +"coche=" + coche + "\n" + "vendido=" + vendido + "\n" + "comprados=" + comprados + "\n" +'}';
     }
 
-    
+    public String mostrarVehiculosNoVendidos() {
+        String vehiculos = "";
+        for (Set<Vehiculo> value : coche.values()) {
+            vehiculos += value.iterator().next().toString() + "\n";
+        }
+        return vehiculos;
+    }
+
+    @Override
+    public String toString() {
+        return "Concesionario{" + "cif=" + cif + "\n" + "nombre=" + nombre + "\n" + "coche=" + coche + "\n" + "vendido=" + vendido + "\n" + "comprados=" + comprados + "\n" + '}';
+    }
 
     @Override
     public int hashCode() {
@@ -134,33 +132,27 @@ public class Concesionario implements Comparable<Concesionario> {
 
     public int getSinvender() {
         int sinVender = coche.values().size();
-      return  sinVender;
-        
+        return sinVender;
+
     }
-    
-     public double getPVPTotalNoVendidos() {
+
+    public double getPVPTotalNoVendidos() {
         double pvp = 0;
         for (Set<Vehiculo> value : coche.values()) {
             Iterator<Vehiculo> it = value.iterator();
             Vehiculo next = it.next();
             pvp += next.getPrecioVenta();
         }
-        
         return pvp;
     }
-    
+
     public double getPVPTotalVendidos() {
         double pvp = 0;
         for (Vehiculo vehiculo : vendido) {
             pvp += vehiculo.getPrecioVenta();
         }
-        
         return pvp;
     }
-    
-    
-    
-   
 
     public String getCif() {
         return cif;
@@ -170,13 +162,9 @@ public class Concesionario implements Comparable<Concesionario> {
         return nombre;
     }
 
-   
-
     @Override
     public int compareTo(Concesionario t) {
         return this.cif.compareTo(t.cif);
     }
 
-    
-    
 }

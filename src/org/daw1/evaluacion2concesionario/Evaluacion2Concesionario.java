@@ -130,25 +130,28 @@ public class Evaluacion2Concesionario {
 
                     //margen de beneficio
                     int margenBeneficio = 0;
-                    boolean noValido = true;
+                    
                     do {
                         System.out.println("Inserte el margen de beneficio");
                         if (sc.hasNextInt()) {
                             margenBeneficio = sc.nextInt();
-                            noValido = false;
+                            
                         } else {
                             System.out.println("inserte un numero");
                         }
                         sc.nextLine();
-                    } while (margenBeneficio < 1 && noValido);
+                    } while (margenBeneficio < 1);
 
-                    con1.addVehiculo(new Vehiculo(marcaVehiculo, modeloVehiculo, numBastidor, TipoVehiculo.of(numeroTipoVehiculo), precioCompra, margenBeneficio, LocalDate.now()));
-
+                   Vehiculo v = new Vehiculo(marcaVehiculo, modeloVehiculo, numBastidor, TipoVehiculo.of(numeroTipoVehiculo), precioCompra, margenBeneficio, LocalDate.now());
+                    if (con1.addVehiculo(v)) {
+                        System.out.println("Se Añadió correctamente");
+                    }else{
+                        System.out.println("El vehiculo ya existe en el concesionario");
+                    }
                     //Coche(String marca, String modelo, String bastidor("AAAAAA1AAAA111111), TipoVehiculo tipoVehiculo, double precioCompra, int margenDeVeneficio, int precioVenta, LocalDate fechaCompra)
                     break;
                 case "2":
                     //Mostramos vehículos no vendidos. El usuario inserta la matrícula y se marca como vendido el vehículo a fecha de hoy (Esta función te puede ayudar: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/LocalDate.html#now())
-
                     
                     String nbastidor = "no hay";
                     
