@@ -120,8 +120,8 @@ public final class Vehiculo implements Comparable<Vehiculo>{
 //    }
 
      public double getPrecioventa(double precioCompra,int margen){
-         
-         double precioVenta = precioCompra+((precioCompra*margen)/100);
+          
+      double precioVenta = precioCompra+((precioCompra*margen)/100);
       return precioVenta;
       
          
@@ -165,7 +165,7 @@ public final class Vehiculo implements Comparable<Vehiculo>{
 
     public void setMargenDeVeneficio(int margenBeneficio) {
         checkMargenBeneficio(margenBeneficio);
-        
+        this.precioVenta = getPrecioventa(precioCompra,margenBeneficio);
         this.margenDeBeneficio = margenBeneficio;
     }
 
