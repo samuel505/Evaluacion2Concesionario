@@ -173,7 +173,8 @@ public final class Vehiculo implements Comparable<Vehiculo>{
     
     @Override
     public String toString() {
-        return "Marca:"+" "+this.marca+"\n"+"Modelo:"+" "+this.modelo+"\n"+"Bastidor"+" "+this.bastidor+"\n"+"Precio Compra:"+" "+this.precioCompra+"\n"+"Margen"+" "+this.margenDeBeneficio+"%"+"\n"+"PVP"+" "+this.precioVenta+"\n"+"Fecha compra"+" "+this.fechaCompra+"\n"+"Fecha venta"+" "+this.fechaVenta+"\n";
+
+        return "Marca: "+this.marca+"\n"+"Modelo: "+this.modelo+"\n"+"Bastidor: "+this.bastidor+"\n"+"Precio Compra: "+this.precioCompra+"\n"+"Margen: "+this.margenDeBeneficio+"%"+"\n"+"PVP: "+this.precioVenta+"\n"+"Fecha compra: "+this.fechaCompra+"\n"+"Fecha venta: "+this.fechaVenta+"\n"+"\n";
     }
 
     public String getModelo() {
