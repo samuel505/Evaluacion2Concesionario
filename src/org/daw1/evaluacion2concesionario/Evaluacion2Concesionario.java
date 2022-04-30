@@ -106,7 +106,7 @@ public class Evaluacion2Concesionario {
 
                         if (sc.hasNextInt()) {
                             numeroTipoVehiculo = sc.nextInt();
-                            if (numeroTipoVehiculo > TipoVehiculo.values().length) {
+                            if (numeroTipoVehiculo < 1 || numeroTipoVehiculo > TipoVehiculo.values().length) {
                                 System.out.println("Inserte un numero valido");
                             }
                         } else {
