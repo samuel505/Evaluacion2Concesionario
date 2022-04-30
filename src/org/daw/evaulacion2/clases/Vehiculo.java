@@ -190,7 +190,6 @@ public final class Vehiculo implements Comparable<Vehiculo>{
     }
 
     public double getPrecioVenta() {
-        System.out.println(precioVenta);
         return precioVenta;
     }
 
