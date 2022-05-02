@@ -52,7 +52,6 @@ public class Concesionario implements Comparable<Concesionario> {
 
     }
 
-    private static int comprados = 0;
 
     public boolean addVehiculo(Vehiculo c) {
 
@@ -60,7 +59,7 @@ public class Concesionario implements Comparable<Concesionario> {
             coche.put(c.getBastidor(), new TreeSet<Vehiculo>());
 
             coche.get(c.getBastidor()).add(c);
-            comprados++;
+            
             return true;
         }
         return false;
