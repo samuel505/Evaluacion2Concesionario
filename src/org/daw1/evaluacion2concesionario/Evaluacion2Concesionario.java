@@ -148,7 +148,7 @@ public class Evaluacion2Concesionario {
                     }else{
                         System.out.println("El vehiculo ya existe en el concesionario");
                     }
-                    //Coche(String marca, String modelo, String bastidor("AAAAAA1AAAA111111), TipoVehiculo tipoVehiculo, double precioCompra, int margenDeVeneficio, int precioVenta, LocalDate fechaCompra)
+                    //Coche(String marca, String modelo, String bastidor("AAAAAA1AAAA111111), TipoVehiculo tipoVehiculo, double precioCompra, int margenDeVeneficio, LocalDate fechaCompra)
                     break;
                 case "2":
                     //Mostramos vehículos no vendidos. El usuario inserta la matrícula y se marca como vendido el vehículo a fecha de hoy (Esta función te puede ayudar: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/LocalDate.html#now())
