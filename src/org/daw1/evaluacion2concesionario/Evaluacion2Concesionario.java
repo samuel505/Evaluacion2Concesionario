@@ -160,7 +160,7 @@ public class Evaluacion2Concesionario {
                         if (con1.registrarVenta(nbastidor)) {
                             System.out.println("Se ha registrado la venta exitosamente");
                         }else{
-                            System.out.println("No existe el vehiculo, no se pudo registrar");
+                            System.out.println("No existe el vehiculo, no se pudo registrar la venta del vehiculo");
                         }
 
                     break;
@@ -170,7 +170,7 @@ public class Evaluacion2Concesionario {
                     break;
                 case "4":
                     //Muestra cuantos coches están vendidos y el importe total de venta de estos (teniendo en cuenta que el PVP sigue la fórmula del documento)
-                    System.out.println("Hay " + con1.getVendidos() + " coches vendidos" + "con un PVP total de: " + con1.getPVPTotalVendidos());
+                    System.out.println("Hay " + con1.getVendidos() + " coches vendidos " + "con un PVP total de: " + con1.getPVPTotalVendidos());
                     break;
                 case "5":
                     //Muestra los datos de los coches no vendidos haciendo un System.out.println(vehiculo). Se muestran todos los datos del coche.
