@@ -73,7 +73,7 @@ public class Concesionario implements Comparable<Concesionario> {
             vendido.add(cocheVendido);
             cocheVendido.setFechaVenta();
             coche.remove(bastidor);
-            comprados--;
+            
             return true;
         }
         return false;
@@ -98,7 +98,7 @@ public class Concesionario implements Comparable<Concesionario> {
 
     @Override
     public String toString() {
-        return "Concesionario{" + "cif=" + cif + "\n" + "nombre=" + nombre + "\n" + "coche=" + coche + "\n" + "vendido=" + vendido + "\n" + "comprados=" + comprados + "\n" + '}';
+        return "Concesionario{" + "cif=" + cif + "\n" + "nombre=" + nombre + "\n" + "coche=" + coche + "\n" + "vendido=" + vendido.size() + "\n" + "comprados=" + coche.values().size() + "\n" + '}';
     }
 
     @Override
