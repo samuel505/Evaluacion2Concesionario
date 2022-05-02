@@ -153,7 +153,7 @@ public class Evaluacion2Concesionario {
                 case "2":
                     //Mostramos vehículos no vendidos. El usuario inserta la matrícula y se marca como vendido el vehículo a fecha de hoy (Esta función te puede ayudar: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/LocalDate.html#now())
                     
-                    System.out.println("coches sin vender: \n"+con1.mostrarVehiculosNoVendidos());
+                    System.out.println("vehiculos sin vender: \n"+con1.mostrarVehiculosNoVendidos());
                     String nbastidor = "no hay";
                     
                         System.out.println("Inserte un numero de bastidor para registrar la venta del vehiculo");
@@ -167,19 +167,19 @@ public class Evaluacion2Concesionario {
                     break;
                 case "3":
                     //Muestra cuantos coches están pendientes de vender y el importe total de venta de estos (teniendo en cuenta que el PVP sigue la fórmula del documento)
-                    System.out.println("Hay " + con1.getSinvender() + " coches sin vender con un PVP total de: " + con1.getPVPTotalNoVendidos());
+                    System.out.println("Hay " + con1.getSinvender() + " vehiculos sin vender con un PVP total de: " + con1.getPVPTotalNoVendidos());
                     break;
                 case "4":
                     //Muestra cuantos coches están vendidos y el importe total de venta de estos (teniendo en cuenta que el PVP sigue la fórmula del documento)
-                    System.out.println("Hay " + con1.getVendidos() + " coches vendidos " + "con un PVP total de: " + con1.getPVPTotalVendidos());
+                    System.out.println("Hay " + con1.getVendidos() + " vehiculos vendidos " + "con un PVP total de: " + con1.getPVPTotalVendidos());
                     break;
                 case "5":
                     //Muestra los datos de los coches no vendidos haciendo un System.out.println(vehiculo). Se muestran todos los datos del coche.
-                    System.out.println("coches sin vender: \n"+con1.mostrarVehiculosNoVendidos());
+                    System.out.println("vehiculos sin vender: \n"+con1.mostrarVehiculosNoVendidos());
                     break;
                 case "6":
                     //Muestra los datos de los coches vendidos haciendo un System.out.println(vehiculo). Se muestran todos los datos del coche.
-                    System.out.println("coches vendidos: \n"+con1.mostrarVehiculosVendidos());
+                    System.out.println("vehiculos vendidos: \n"+con1.mostrarVehiculosVendidos());
                     break;
                 case "0":
                     break;
