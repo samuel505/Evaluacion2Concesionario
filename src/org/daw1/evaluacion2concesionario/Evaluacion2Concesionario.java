@@ -122,7 +122,7 @@ public class Evaluacion2Concesionario {
 
                         System.out.println("Inserte un precio de compra del vehiculo");
                         if (sc.hasNextDouble()) {
-                            precioCompra = sc.nextInt();
+                            precioCompra = sc.nextDouble();
                         }
                         sc.nextLine();
 

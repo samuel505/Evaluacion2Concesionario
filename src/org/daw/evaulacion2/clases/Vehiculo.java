@@ -97,11 +97,11 @@ public final class Vehiculo implements Comparable<Vehiculo>{
 
     }
 
-    private static void checkPrecioVenta(double precioVenta) {
-        if (precioVenta < 1) {
-            throw new IllegalArgumentException();
-        }
-    }
+//    private static void checkPrecioVenta(double precioVenta) {
+//        if (precioVenta < 1) {
+//            throw new IllegalArgumentException();
+//        }
+//    }
     
 
     private static void checkFechaCompra(LocalDate fechaCompra) {
